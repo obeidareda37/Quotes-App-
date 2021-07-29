@@ -17,7 +17,6 @@ class StarPage extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
                   width: double.infinity,
-                  height: 135.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Color(0xffF5F5F5),

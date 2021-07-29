@@ -14,7 +14,6 @@ class ItemMessage extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: double.infinity,
-        height: 145.h,
         child: Card(
           margin: EdgeInsets.all(2),
           shape: RoundedRectangleBorder(
@@ -22,77 +21,72 @@ class ItemMessage extends StatelessWidget {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+           mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  padding: EdgeInsets.all(17),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
-                    color: Color(0xffe5e5e5),
+              Container(
+                padding: EdgeInsets.all(17),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
                   ),
-                  width: double.infinity,
-                  child: Text(
-                    message,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                    textAlign: TextAlign.center,
+                  color: Color(0xffe5e5e5),
+                ),
+                width: double.infinity,
+                child: Text(
+                  message,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButtonWidget(
-                        icon: Icon(
-                          Icons.favorite_outline,
-                          color: Color(0xff3797A4),
-                        ),
-                        onPressed: () {},
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButtonWidget(
+                      icon: Icon(
+                        Icons.favorite_outline,
+                        color: Color(0xff3797A4),
                       ),
-                      IconButtonWidget(
-                        icon: Icon(
-                          Icons.bookmark_border,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {},
+                      onPressed: () {},
+                    ),
+                    IconButtonWidget(
+                      icon: Icon(
+                        Icons.bookmark_border,
+                        color: Colors.black,
                       ),
-                      IconButtonWidget(
-                        icon: Icon(
-                          CommunityMaterialIcons.facebook,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {},
+                      onPressed: () {},
+                    ),
+                    IconButtonWidget(
+                      icon: Icon(
+                        CommunityMaterialIcons.facebook,
+                        color: Colors.black,
                       ),
-                      IconButtonWidget(
-                        icon: Icon(
-                          Icons.share,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {},
+                      onPressed: () {},
+                    ),
+                    IconButtonWidget(
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.black,
                       ),
-                      IconButtonWidget(
-                        icon: Icon(
-                          Icons.content_copy,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {},
+                      onPressed: () {},
+                    ),
+                    IconButtonWidget(
+                      icon: Icon(
+                        Icons.content_copy,
+                        color: Colors.black,
                       ),
-                    ],
-                  ),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
               ),
             ],

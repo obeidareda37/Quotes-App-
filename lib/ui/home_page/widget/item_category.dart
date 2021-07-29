@@ -17,11 +17,9 @@ class ItemCategory extends StatelessWidget{
         color: Color(0xffF5F5F5),
         borderRadius: BorderRadius.circular(15),
       ),
-      height: 66.h,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
-
         ),
         child: Container(
           padding: EdgeInsets.all(10),
