@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/ui/home_screen/screen/home_screen.dart';
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper.databaseHelper.initDatabase();
   runApp(MyApp());
 }
 

@@ -1,10 +1,11 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quotes_app/models/message.dart';
 import 'package:quotes_app/ui/favorite_page/widget/icon_button_widget.dart';
 
 class ItemMessage extends StatelessWidget {
-  final String message;
+ Message message;
 
   ItemMessage({this.message});
 
@@ -34,7 +35,7 @@ class ItemMessage extends StatelessWidget {
                 ),
                 width: double.infinity,
                 child: Text(
-                  message,
+                  message.quotes,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
