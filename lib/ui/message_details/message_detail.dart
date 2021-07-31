@@ -19,21 +19,17 @@ class _MessageDetailsState extends State<MessageDetails> {
   Message message1 = Message();
 
   getMessage() async {
-    message = await DatabaseHelper.databaseHelper.getAllMessages(widget.category.id);
-    setState(() {
-
-    });
+    message =
+        await DatabaseHelper.databaseHelper.getAllMessages(widget.category.id);
+    setState(() {});
   }
 
-  insertMessage()async{
-    ListOfMessages.forEach((element) async{
+  insertMessage() async {
+    ListOfMessages.forEach((element) async {
       message1 = element;
       await DatabaseHelper.databaseHelper.insertMessage(message1);
-      setState(() {
-
-      });
+      setState(() {});
     });
-
   }
 
   @override
@@ -47,6 +43,10 @@ class _MessageDetailsState extends State<MessageDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.category.name),
+        backgroundColor: Color(0xff3797A4),
+      ),
       body: SafeArea(
         child: ListView.builder(
           scrollDirection: Axis.vertical,

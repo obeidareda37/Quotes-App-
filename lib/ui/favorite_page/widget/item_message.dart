@@ -1,13 +1,21 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/models/message.dart';
 import 'package:quotes_app/ui/favorite_page/widget/icon_button_widget.dart';
 
-class ItemMessage extends StatelessWidget {
- Message message;
+class ItemMessage extends StatefulWidget {
+  Message message;
 
   ItemMessage({this.message});
+
+  @override
+  _ItemMessageState createState() => _ItemMessageState();
+}
+
+class _ItemMessageState extends State<ItemMessage> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class ItemMessage extends StatelessWidget {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-           mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 padding: EdgeInsets.all(17),
@@ -35,7 +43,7 @@ class ItemMessage extends StatelessWidget {
                 ),
                 width: double.infinity,
                 child: Text(
-                  message.quotes,
+                  widget.message.quotes,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -53,11 +61,26 @@ class ItemMessage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButtonWidget(
-                      icon: Icon(
-                        Icons.favorite_outline,
-                        color: Color(0xff3797A4),
-                      ),
-                      onPressed: () {},
+                      icon: isFavorite
+                          ? Icon(
+                              Icons.favorite,
+                              color: Color(0xff3797A4),
+                            )
+                          : Icon(
+                              Icons.favorite_outline,
+                              color: Color(0xff3797A4),
+                            ),
+                      onPressed: () {
+                        setState(() {
+                        if(isFavorite){
+                          DatabaseHelper.databaseHelper.deleteFavorite(widget.message.id);
+                        }else{
+                          DatabaseHelper.databaseHelper
+                              .insertFavorite(widget.message);
+                        }
+                          isFavorite = !isFavorite;
+                        });
+                      },
                     ),
                     IconButtonWidget(
                       icon: Icon(

@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
+import 'package:quotes_app/helpers/shared_pref.dart';
 import 'package:quotes_app/models/category.dart';
-import 'package:quotes_app/models/message.dart';
 import 'package:quotes_app/ui/home_page/widget/item_category.dart';
 import 'package:quotes_app/ui/message_details/message_detail.dart';
 
@@ -19,27 +16,27 @@ class _HomePageState extends State<HomePage> {
 
   getCategory() async {
     category = await DatabaseHelper.databaseHelper.getAllCategory();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
-  insertCategory()async{
-    ListCategory.forEach((element) async{
-      category1 =element;
+  insertCategory() async {
+    ListCategory.forEach((element) async {
+      category1 = element;
       await DatabaseHelper.databaseHelper.insertCategory(category1);
-      setState(() {
-      });
+      setState(() {});
     });
-
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    insertCategory();
-    getCategory();
+    if (SharedHelper.sharedHelper.getUser() != null) {
+      getCategory();
+    } else {
+      insertCategory();
+      getCategory();
+    }
   }
 
   @override

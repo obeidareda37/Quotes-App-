@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quotes_app/helpers/shared_pref.dart';
 import 'package:quotes_app/ui/favorite_page/screen/favorite_page.dart';
 import 'package:quotes_app/ui/home_page/screen/home_page.dart';
 import 'package:quotes_app/ui/home_screen/widget/drawer.dart';
@@ -26,17 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: DrawerMenu(),
       body: Center(
+
         child: screens.elementAt(index),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (tapedIndex) {
           this.index = tapedIndex;
-          setState(() {});
+          setState(() {
+          });
         },
         selectedItemColor: Color(0xff3797A4),
         currentIndex: index,
         items: [
           BottomNavigationBarItem(
+
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),

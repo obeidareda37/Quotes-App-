@@ -16,6 +16,12 @@ class Message {
       'catId': catId,
     };
   }
+  Map<String, dynamic> toMap1() {
+    return {
+      'id': id,
+      'quotes': quotes,
+    };
+  }
 
   factory Message.fromMap(Map<String, dynamic> map) {
     return Message(
@@ -24,7 +30,17 @@ class Message {
       catId: map['catId'],
     );
   }
+
+  factory Message.fromMap1(Map<String, dynamic> map) {
+    return Message(
+      id: map['id'],
+      quotes: map['quotes'],
+    );
 }
+
+}
+
+
 
 List<Message> ListOfMessages = [
   Message(

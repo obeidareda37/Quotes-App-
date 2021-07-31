@@ -19,6 +19,10 @@ class DatabaseHelper {
   static final String messageQuotesColumnName = 'quotes';
   static final String messageCatIdColumnName = 'catId';
 
+  static final String favoriteTableName = 'favorite';
+  static final String favoriteIdColumnName = 'id';
+  static final String favoriteQuotesColumnName = 'quotes';
+
   Database database;
 
   initDatabase() async {
@@ -38,6 +42,8 @@ class DatabaseHelper {
           '''CREATE TABLE $messageTableName ($messageIdColumnName INTEGER PRIMARY KEY AUTOINCREMENT,
            $messageQuotesColumnName TEXT,
             $messageCatIdColumnName INTEGER, FOREIGN KEY ($messageCatIdColumnName) REFERENCES $categoryTableName ($categoryIdColumnName) ON DELETE CASCADE )''');
+      db.execute(
+          '''CREATE TABLE $favoriteTableName ($favoriteIdColumnName INTEGER PRIMARY KEY AUTOINCREMENT, $favoriteQuotesColumnName TEXT)''');
     }, onOpen: (database) {
       print('the database has been opened');
     });
@@ -53,6 +59,15 @@ class DatabaseHelper {
     int rowNum = await database.insert(messageTableName, message.toMap());
     print(rowNum);
   }
+  insertFavorite(Message message) async {
+    int rowNum = await database.insert(favoriteTableName,message.toMap1());
+    print('$rowNum favorite');
+  }
+
+  deleteFavorite(int id) async {
+    int rowNum = await database.delete(favoriteTableName,where: 'id=?',whereArgs: [id]);
+    print('$rowNum deleteFavorite');
+  }
 
   Future<List<Category>> getAllCategory() async {
     List<Map<String, Object>> results = await database.query(categoryTableName);
@@ -67,6 +82,14 @@ class DatabaseHelper {
         where: '$messageCatIdColumnName=?', whereArgs: [catId]);
     List<Message> messages = results.map((e) {
       return Message.fromMap(e);
+    }).toList();
+    return messages;
+  }
+
+  Future<List<Message>> getAllFavorite() async {
+    List<Map<String, Object>> results = await database.query(favoriteTableName);
+    List<Message> messages = results.map((e) {
+      return Message.fromMap1(e);
     }).toList();
     return messages;
   }
