@@ -15,15 +15,20 @@ class _HomePageState extends State<HomePage> {
   Category category1 = Category();
 
   getCategory() async {
-    category = await DatabaseHelper.databaseHelper.getAllCategory();
-    setState(() {});
+    if (category.isEmpty) {
+      category = await DatabaseHelper.databaseHelper.getAllCategory();
+      setState(() {});
+    }
   }
 
   insertCategory() async {
+
     ListCategory.forEach((element) async {
       category1 = element;
       await DatabaseHelper.databaseHelper.insertCategory(category1);
-      setState(() {});
+      setState((){
+
+      });
     });
   }
 
@@ -31,12 +36,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (SharedHelper.sharedHelper.getUser() != null) {
-      getCategory();
-    } else {
-      insertCategory();
-      getCategory();
-    }
+    insertCategory();
+    getCategory();
   }
 
   @override

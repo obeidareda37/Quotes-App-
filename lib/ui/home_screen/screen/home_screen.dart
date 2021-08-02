@@ -11,12 +11,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   int index = 0;
   List<Widget> screens = [
     HomePage(),
     FavoritePage(),
     StarPage(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: DrawerMenu(),
       body: Center(
-
         child: screens.elementAt(index),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (tapedIndex) {
           this.index = tapedIndex;
-          setState(() {
-          });
+          setState(() {});
         },
         selectedItemColor: Color(0xff3797A4),
         currentIndex: index,
         items: [
           BottomNavigationBarItem(
-
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),

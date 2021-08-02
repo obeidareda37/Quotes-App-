@@ -1,9 +1,11 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/models/message.dart';
 import 'package:quotes_app/ui/favorite_page/widget/icon_button_widget.dart';
+import 'package:share/share.dart';
 
 class ItemMessage extends StatefulWidget {
   Message message;
@@ -16,6 +18,8 @@ class ItemMessage extends StatefulWidget {
 
 class _ItemMessageState extends State<ItemMessage> {
   bool isFavorite = false;
+  bool isSave = false;
+  bool isCopy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,43 +76,66 @@ class _ItemMessageState extends State<ItemMessage> {
                             ),
                       onPressed: () {
                         setState(() {
-                        if(isFavorite){
-                          DatabaseHelper.databaseHelper.deleteFavorite(widget.message.id);
-                        }else{
-                          DatabaseHelper.databaseHelper
-                              .insertFavorite(widget.message);
-                        }
+                          if (isFavorite) {
+                            DatabaseHelper.databaseHelper
+                                .deleteFavorite(widget.message.id);
+                          } else {
+                            DatabaseHelper.databaseHelper
+                                .insertFavorite(widget.message);
+                          }
                           isFavorite = !isFavorite;
                         });
                       },
                     ),
                     IconButtonWidget(
-                      icon: Icon(
-                        Icons.bookmark_border,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {},
+                      icon: isSave
+                          ? Icon(
+                              Icons.bookmark,
+                              color: Color(0xff3797A4),
+                            )
+                          : Icon(
+                              Icons.bookmark_border,
+                              color: Colors.black,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          isSave = !isSave;
+                        });
+                      },
                     ),
                     IconButtonWidget(
                       icon: Icon(
                         CommunityMaterialIcons.facebook,
                         color: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                     ),
                     IconButtonWidget(
                       icon: Icon(
                         Icons.share,
                         color: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Share.share(widget.message.quotes);
+                        setState(() {
+
+                        });
+                      },
                     ),
                     IconButtonWidget(
-                      icon: Icon(
-                        Icons.content_copy,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {},
+                      icon:
+                        isCopy?
+                        Icon(Icons.file_copy,color: Color(0xff3797A4),)
+                        :Icon(Icons.content_copy,
+                        color:Colors.black),
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(text: widget.message.quotes));
+                      setState(() {
+                        isCopy=!isCopy;
+                      });
+                        },
                     ),
                   ],
                 ),
