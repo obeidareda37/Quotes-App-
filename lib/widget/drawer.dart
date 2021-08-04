@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quotes_app/ui/home_screen/widget/my_drawer_header.dart';
-import 'package:quotes_app/ui/home_screen/widget/my_drawer_list.dart';
+import 'package:quotes_app/widget/my_drawer_header.dart';
+import 'package:quotes_app/widget/my_drawer_list.dart';
 
 class DrawerMenu extends StatefulWidget {
   @override

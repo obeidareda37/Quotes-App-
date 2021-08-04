@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quotes_app/helpers/shared_pref.dart';
-import 'package:quotes_app/ui/home_screen/screen/home_screen.dart';
+import 'package:quotes_app/ui/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    SharedHelper.sharedHelper.saveDate(true);
+    savedata() ;
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -23,6 +23,11 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       );
     });
+  }
+
+  void savedata() async{
+    SharedHelper.sharedHelper.saveDate(true);
+
   }
 
   @override

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/models/message.dart';
-import 'package:quotes_app/ui/favorite_page/widget/icon_button_widget.dart';
+import 'package:quotes_app/widget/icon_button_widget.dart';
 import 'package:share/share.dart';
 
 class ItemMessage extends StatefulWidget {

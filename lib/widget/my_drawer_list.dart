@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quotes_app/ui/home_page/screen/home_page.dart';
-import 'package:quotes_app/ui/star_page/screen/star_page.dart';
+import 'package:quotes_app/ui/home_page/home_page.dart';
+import 'package:quotes_app/ui/star_page/star_page.dart';
 
 import 'list_tile_widget.dart';
 

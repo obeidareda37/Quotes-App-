@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/models/category.dart';
 import 'package:quotes_app/models/message.dart';
-import 'package:quotes_app/ui/favorite_page/widget/item_message.dart';
-import 'package:quotes_app/ui/home_page/widget/item_category.dart';
+import 'package:quotes_app/widget/item_message.dart';
+import 'package:quotes_app/widget/item_category.dart';
 
 class MessageDetails extends StatefulWidget {
   Category category;

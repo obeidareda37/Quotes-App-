@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/helpers/shared_pref.dart';
 import 'package:quotes_app/models/category.dart';
-import 'package:quotes_app/ui/home_page/widget/item_category.dart';
+import 'package:quotes_app/widget/item_category.dart';
 import 'package:quotes_app/ui/message_details/message_detail.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,13 +22,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   insertCategory() async {
-
     ListCategory.forEach((element) async {
       category1 = element;
       await DatabaseHelper.databaseHelper.insertCategory(category1);
-      setState((){
-
-      });
+      setState(() {});
     });
   }
 
@@ -36,8 +33,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    insertCategory();
-    getCategory();
+    check();
+  }
+
+  check() async {
+    if (await SharedHelper.sharedHelper.getData()) {
+      insertCategory();
+      getCategory();
+    }
   }
 
   @override

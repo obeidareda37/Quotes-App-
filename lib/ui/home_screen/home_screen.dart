@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quotes_app/helpers/shared_pref.dart';
-import 'package:quotes_app/ui/favorite_page/screen/favorite_page.dart';
-import 'package:quotes_app/ui/home_page/screen/home_page.dart';
-import 'package:quotes_app/ui/home_screen/widget/drawer.dart';
-import 'package:quotes_app/ui/star_page/screen/star_page.dart';
+import 'package:quotes_app/ui/favorite_page/favorite_page.dart';
+import 'package:quotes_app/ui/home_page/home_page.dart';
+import 'package:quotes_app/widget/drawer.dart';
+import 'package:quotes_app/ui/star_page/star_page.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
