@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quotes_app/helpers/shared_pref.dart';
+import 'package:quotes_app/provider/quotes_provider.dart';
 import 'package:quotes_app/ui/favorite_page/favorite_page.dart';
 import 'package:quotes_app/ui/home_page/home_page.dart';
 import 'package:quotes_app/widget/drawer.dart';
@@ -24,11 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff3797A4),

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:quotes_app/helpers/shared_pref.dart';
+import 'package:quotes_app/provider/quotes_provider.dart';
 import 'package:quotes_app/ui/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,6 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<QuotesProvider>(context).insertCategory();
+    Provider.of<QuotesProvider>(context).insertMessage();
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

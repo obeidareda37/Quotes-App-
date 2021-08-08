@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quotes_app/helpers/database_helper/database_helper.dart';
 import 'package:quotes_app/models/category.dart';
 import 'package:quotes_app/models/message.dart';
+import 'package:quotes_app/provider/quotes_provider.dart';
 import 'package:quotes_app/widget/item_message.dart';
 import 'package:quotes_app/widget/item_category.dart';
 
@@ -18,30 +20,31 @@ class _MessageDetailsState extends State<MessageDetails> {
   List<Message> message = List<Message>();
   Message message1 = Message();
 
-  getMessage() async {
-    message =
-        await DatabaseHelper.databaseHelper.getAllMessages(widget.category.id);
-    setState(() {});
-  }
-
-  insertMessage() async {
-    ListOfMessages.forEach((element) async {
-      message1 = element;
-      await DatabaseHelper.databaseHelper.insertMessage(message1);
-      setState(() {});
-    });
-  }
+  // getMessage() async {
+  //   message =
+  //       await DatabaseHelper.databaseHelper.getAllMessages(widget.category.id);
+  //   setState(() {});
+  // }
+  //
+  // insertMessage() async {
+  //   ListOfMessages.forEach((element) async {
+  //     message1 = element;
+  //     await DatabaseHelper.databaseHelper.insertMessage(message1);
+  //     setState(() {});
+  //   });
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    insertMessage();
-    getMessage();
+    Provider.of<QuotesProvider>(context, listen: false)
+        .getMessage(widget.category.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (message.isEmpty)
+      message = Provider.of<QuotesProvider>(context, listen: true).message;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category.name),
