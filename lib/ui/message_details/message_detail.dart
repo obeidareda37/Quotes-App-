@@ -43,22 +43,26 @@ class _MessageDetailsState extends State<MessageDetails> {
 
   @override
   Widget build(BuildContext context) {
-    if (message.isEmpty)
-      message = Provider.of<QuotesProvider>(context, listen: true).message;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category.name),
         backgroundColor: Color(0xff3797A4),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            return ItemMessage(
-              message: message[index],
+        child: Consumer<QuotesProvider>(
+          builder:(context,provider,x){
+            message = provider.message;
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return ItemMessage(
+                  message: message[index],
+                );
+              },
+              itemCount: message.length,
             );
           },
-          itemCount: message.length,
+
         ),
       ),
     );

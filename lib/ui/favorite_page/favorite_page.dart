@@ -27,22 +27,27 @@ class _FavoritePageState extends State<FavoritePage> {
     // TODO: implement initState
     super.initState();
     // getMessageFromFavorite();
-    Provider.of<QuotesProvider>(context,listen: false).getMessageFromFavorite();
+    Provider.of<QuotesProvider>(context, listen: false)
+        .getMessageFromFavorite();
   }
 
   @override
   Widget build(BuildContext context) {
-    message = Provider.of<QuotesProvider>(context,listen: true).message;
     return Scaffold(
       body: SafeArea(
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            return ItemMessage(
-              message: message[index],
+        child: Consumer<QuotesProvider>(
+          builder: (context, provider, x) {
+            message = provider.favorite;
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return ItemMessage(
+                  message: message[index],
+                );
+              },
+              itemCount: message.length,
             );
           },
-          itemCount: message.length,
         ),
       ),
     );

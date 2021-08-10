@@ -50,26 +50,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (category.isEmpty)
-      category = Provider.of<QuotesProvider>(context, listen: true).category;
+      // category = Provider.of<QuotesProvider>(context, listen: true).category;
     return Scaffold(
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return ItemCategory(
-            category: category[index],
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => MessageDetails(
-                    category: category[index],
-                  ),
-                ),
+      body: Consumer<QuotesProvider>(
+        builder: (context,qutesProvider,x){
+          category = qutesProvider.category;
+         return ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return ItemCategory(
+                category: category[index],
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MessageDetails(
+                        category: category[index],
+                      ),
+                    ),
+                  );
+                },
               );
             },
+            itemCount: category.length,
           );
         },
-        itemCount: category.length,
       ),
     );
   }

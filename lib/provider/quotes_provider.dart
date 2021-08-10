@@ -7,6 +7,7 @@ class QuotesProvider with ChangeNotifier {
   List<Category> category = List<Category>();
   Category category1;
   List<Message> message=List<Message>();
+  List<Message> favorite=List<Message>();
   Message message1;
 
   getMessage(int id) async {
@@ -35,7 +36,7 @@ class QuotesProvider with ChangeNotifier {
   }
 
   getMessageFromFavorite() async {
-    message = await DatabaseHelper.databaseHelper.getAllFavorite();
+    favorite = await DatabaseHelper.databaseHelper.getAllFavorite();
     notifyListeners();
   }
 }

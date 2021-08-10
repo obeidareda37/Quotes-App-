@@ -17,7 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    savedata() ;
+
+      Provider.of<QuotesProvider>(context,listen: false).insertCategory();
+      Provider.of<QuotesProvider>(context,listen: false).insertMessage();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -27,15 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
-  void savedata() async{
-    SharedHelper.sharedHelper.saveDate(true);
 
-  }
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<QuotesProvider>(context).insertCategory();
-    Provider.of<QuotesProvider>(context).insertMessage();
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
